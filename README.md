@@ -222,7 +222,7 @@ There's no reason to wait; learn by doing today!
 
 ## Useful linksgit  git
 
-https://www.guru99.com/software-development-life-cycle-tutorial.html
-https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
+https://www.guru99.com/software-development-life-cycle-tutorial.html <br>
+https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow <br>
 
 
