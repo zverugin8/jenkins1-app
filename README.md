@@ -220,7 +220,7 @@ There's no reason to wait; learn by doing today!
 
 **link: https://learn.acloud.guru/course/03c036a0-ef8c-41a0-bc5f-0ce9c0b29000/dashboard**
 
-## Useful linksgit  git
+## Useful links
 
 https://www.guru99.com/software-development-life-cycle-tutorial.html <br>
 https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow <br>
