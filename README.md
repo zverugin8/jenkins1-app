@@ -54,6 +54,8 @@ is an important decision, weighing the options in terms of the impact of change 
 
 In this post, we are going to talk about the following strategies:
 
+(add zero downtime)
+
 **Recreate:** Version A is terminated then version B is rolled out. <br>
 **Ramped (also known as rolling-update or incremental):** Version B is slowly rolled out and replacing version A.<br>
 **Blue/Green:** Version B is released alongside version A, then the traffic is switched to version B.<br>
