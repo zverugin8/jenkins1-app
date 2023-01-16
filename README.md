@@ -65,7 +65,7 @@ It's worth mentioning that you can also define your own custom variables in your
 
 - [x] Configuring GitLab to run my build pipeline on a regular schedule or when triggered by code changes. The pipeline should include steps to build, test and push the code with an image tag of **"v1.0.0"**. 
 
-![Semantic description of image](/pic/ci.png "Image Title")
+![Semantic description of image](/pictures/ci.png "Image Title")
 
 Here is an example of a .gitlab-ci.yml file that demonstrates how to set up a pipeline that builds and tests a push.
 
