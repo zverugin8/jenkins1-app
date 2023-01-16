@@ -24,11 +24,11 @@ To learn more about CI/CD and how to implement it in your development workflow, 
 
 - The GitLab documentation on CI/CD: https://docs.gitlab.com/ee/ci/
 
-## Here are some tasks that could be included in a CI(Continuous Integration) course using GitLab:
+## Here are some tasks that could be included in a Continuous Integration course using GitLab:
 
-- [x] You'll need to create a new repository on your personaly GitLab account and push the code from the GitHub repository https://github.com/benc-uk/python-demoapp to the new your GitLab repository.
+- [ ] You'll need to create a new repository on your personaly GitLab account and push the code from the GitHub repository https://github.com/benc-uk/python-demoapp to the new your GitLab repository.
 
-- [x]  Setting up a GitLab account and setting up a GitLab account and creating a token. Use a Personal Access Token instead of a password. 
+- [ ]  Setting up a GitLab account and setting up a GitLab account and creating a token. Use a Personal Access Token instead of a password. 
 
 ```text
 Click on your avatar in the top right corner of the page, and then click on "Settings."
@@ -40,7 +40,7 @@ Click on the "Create personal access token" button.
 Make note of the token that is generated, as it will not be shown again.
 ```
 
-- [x] set up a build pipeline in GitLab that will automatically **build**, **test**, and **push** packages to the GitLab container registry. The build image should be named using variables such as **PROJECT_NAMESPACE**, **CI_PROJECT_NAME**, **CI_REGISTRY** and **IMAGE_TAG**. Image's tag should be "v1.0.0"
+- [ ] set up a build pipeline in GitLab that will automatically **build**, **test**, and **push** packages to the GitLab container registry. The build image should be named using variables such as **PROJECT_NAMESPACE**, **CI_PROJECT_NAME**, **CI_REGISTRY** and **IMAGE_TAG**. Image's tag should be "v1.0.0"
 
 Here is a list of some common environment variables that are available in a GitLab CI pipeline:
 
@@ -63,7 +63,7 @@ https://docs.gitlab.com/ee/ci/variables/predefined_variables.html
 
 It's worth mentioning that you can also define your own custom variables in your GitLab project settings, under **"CI/CD" > "Variables"**
 
-- [x] Configuring GitLab to run my build pipeline on a regular schedule or when triggered by code changes. The pipeline should include steps to build, test and push the code with an image tag of **"v1.0.0"**. 
+- [ ] Configuring GitLab to run my build pipeline on a regular schedule or when triggered by code changes. The pipeline should include steps to build, test and push the code with an image tag of **"v1.0.0"**. 
 
 ![Semantic description of image](/pictures/ci.png "Image Title")
 
