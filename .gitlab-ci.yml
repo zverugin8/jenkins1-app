@@ -2,7 +2,8 @@ variables:
   PROJECT_NAMESPACE: my-namespace
   CI_PROJECT_NAME: my-project
   IMAGE_TAG: v1.0.0
-  IMAGE_NAME: app
+  IMAGE_NAME: pyapp
+  USER_NAME: siarheisaroka
 image: python:3.8-slim-buster
 before_script:
 - apt-get update -y && apt-get install -y curl make git
@@ -24,6 +25,9 @@ run_tests:
   - job: lint
 
 build_image:
+  image: docker:20
+  services:
+  - docker:dind
   stage: build
   script:
   - echo "stage build"
