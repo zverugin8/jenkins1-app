@@ -43,7 +43,7 @@ build_image:
   script:
   - docker -v
   - echo "vars DOCKER_HOST:$DOCKER_HOST, DOCKER_DRIVER:$DOCKER_DRIVER"
-  - docker login -u $DOCKER_USER_NAME -p $CI_BUILD_TOKEN
+  - docker login -u $DOCKER_USER_NAME -p $BUILD_TOKEN
   - sleep 20
   - apk add iproute2
   - apk add git
@@ -69,7 +69,7 @@ push_image:
   - echo "stage push"
   - sleep 20
   - docker load -i build/$IMAGE_NAME.tar.gz
-  - docker login -u $DOCKER_USER_NAME -p $CI_BUILD_TOKEN
+  - docker login -u $DOCKER_USER_NAME -p $BUILD_TOKEN
   - docker push $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG
   dependencies:
   - build_image
