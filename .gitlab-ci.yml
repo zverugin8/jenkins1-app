@@ -40,7 +40,7 @@ build_image:
   - sleep 20
   - apk add iproute2
   - apk add git
-  #- apk add py3-pip
+  #- apk add py3-pip 
   - ss -ntpl
   - docker build -t $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG -f build/Dockerfile .
   - docker push
