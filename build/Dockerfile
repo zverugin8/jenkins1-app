@@ -6,7 +6,7 @@ LABEL org.opencontainers.image.source = "https://github.com/benc-uk/python-demoa
 ARG srcDir=src
 WORKDIR /app
 COPY $srcDir/requirements.txt .
-# RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt
 
 COPY $srcDir/run.py .
 COPY $srcDir/app ./app
