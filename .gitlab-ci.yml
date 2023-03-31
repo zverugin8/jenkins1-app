@@ -32,7 +32,7 @@ build_image:
   script:
   - echo "stage build"
   - docker login -u $DOCKER_USER_NAME -p $CI_BUILD_TOKEN
-  - docker build -t $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG
+  - docker build -t $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG -f build/Dockerfile .
   - docker push
 
 push_image:
