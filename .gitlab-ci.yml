@@ -43,7 +43,7 @@ build_image:
   #- apk add py3-pip 
   - ss -ntpl
   - docker build --network=host -t $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG -f build/Dockerfile .
-  - docker image save $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG -o buld/$IMAGE_NAME.tar.gz
+  - docker image save $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG -o build/$IMAGE_NAME.tar.gz
   artifacts:
     paths:
     - build/
