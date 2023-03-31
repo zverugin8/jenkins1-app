@@ -35,7 +35,7 @@ build_image:
   before_script: []
   script:
   - docker -v
-  - echo "vars DOCKER_HOST:$DOCKER_HOST, DOCKER_DRIVER:$DOCKER_DRIVER:"
+  - echo "vars DOCKER_HOST:$DOCKER_HOST, DOCKER_DRIVER:$DOCKER_DRIVER"
   - docker login -u $DOCKER_USER_NAME -p $CI_BUILD_TOKEN
   - sleep 20
   - apk add iproute2
