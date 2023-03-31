@@ -25,12 +25,15 @@ run_tests:
   - job: lint
 
 build_image:
-  image: docker:20
+  stage: build
+  image: docker:latest
   services:
   - docker:dind
-  stage: build
   script:
   - echo "stage build"
+  - docker login -u $DOCKER_USER_NAME -p $CI_BUILD_TOKEN
+  - docker build -t $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG
+  - docker push
 
 push_image:
   stage: push
