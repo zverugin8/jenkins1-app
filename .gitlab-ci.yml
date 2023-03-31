@@ -43,7 +43,7 @@ build_image:
   script:
   - docker -v
   - echo "vars DOCKER_HOST:$DOCKER_HOST, DOCKER_DRIVER:$DOCKER_DRIVER"
-  - docker login -u $DOCKER_USER_NAME -p $BUILD_TOKEN
+  - docker login -u $DOCKER_USER_NAME --password-stdin <<< "$BUILD_TOKEN"
   - sleep 20
   - apk add iproute2
   - apk add git
