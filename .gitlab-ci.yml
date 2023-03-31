@@ -63,5 +63,5 @@ push_image:
   - docker login -u $DOCKER_USER_NAME -p $CI_BUILD_TOKEN
   - docker push $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG
   dependencies:
-  - build
+  - build_image
 
