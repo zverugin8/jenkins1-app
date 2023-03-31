@@ -43,10 +43,10 @@ build_image:
   #- apk add py3-pip 
   - ss -ntpl
   - docker build --network=host -t $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG -f build/Dockerfile .
-  #- docker push $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG
+  - docker image save $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG -o buld/$IMAGE_NAME.tar.gz
   artifacts:
     paths:
-    - $IMAGE_NAME.tar.gz
+    - build/
 
 push_image:
   variables:
@@ -57,9 +57,11 @@ push_image:
   services:
   - docker:20.10.16-dind
   before_script:
-  - docker load -i $IMAGE_NAME.tar.gz
+  - docker load -i build/$IMAGE_NAME.tar.gz
   script:
   - echo "stage push"
   - docker login -u $DOCKER_USER_NAME -p $CI_BUILD_TOKEN
   - docker push $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG
+  dependencies:
+  - build
 
