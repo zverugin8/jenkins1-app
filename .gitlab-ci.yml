@@ -43,9 +43,23 @@ build_image:
   #- apk add py3-pip 
   - ss -ntpl
   - docker build --network=host -t $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG -f build/Dockerfile .
-  - docker push $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG
+  #- docker push $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG
+  artifacts:
+    paths:
+    - $IMAGE_NAME.tar.gz
 
 push_image:
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_DRIVER: overlay2
   stage: push
+  image: docker:20.10.16
+  services:
+  - docker:20.10.16-dind
+  before_script:
+  - docker load -i $IMAGE_NAME.tar.gz
   script:
-  - echo "stage deploy"
+  - echo "stage push"
+  - docker login -u $DOCKER_USER_NAME -p $CI_BUILD_TOKEN
+  - docker push $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG
+
