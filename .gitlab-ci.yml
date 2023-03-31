@@ -17,6 +17,7 @@ lint:
   - gcp
   stage: test
   script:
+  - whoami
   - make lint
 
 run_tests:
