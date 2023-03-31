@@ -5,7 +5,7 @@ variables:
   IMAGE_NAME: app
 image: python:3.8-slim-buster
 before_script:
-- apt-get update -y && apt-get install -y curl make
+- apt-get update -y && apt-get install -y curl make git
 stages:
 - test
 - build
