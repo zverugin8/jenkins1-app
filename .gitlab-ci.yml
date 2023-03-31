@@ -1,0 +1,29 @@
+variables:
+  PROJECT_NAMESPACE: my-namespace
+  CI_PROJECT_NAME: my-project
+  IMAGE_TAG: latest
+
+stages:
+- test
+- build
+- push
+
+lint:
+  stage: test
+  script:
+  - echo "lint test"
+
+run_tests:  
+  stage: test
+  script:
+  - echo "running tests"
+
+build_image:
+  stage: build
+  script:
+  - echo "stage build"
+
+push_image:
+  stage: push
+  script:
+  - echo "stage deploy"
