@@ -29,9 +29,9 @@ build_image:
     DOCKER_HOST: tcp://docker:2375
     DOCKER_DRIVER: overlay2
   stage: build
-  image: docker:latest
+  image: docker:20.10.16
   services:
-  - docker:dind
+  - docker:20.10.16-dind
   before_script: []
   script:
   - docker -v
@@ -40,7 +40,7 @@ build_image:
   - sleep 20
   - apk add iproute2
   - apk add git
-  - apk add py3-pip
+  #- apk add py3-pip
   - ss -ntpl
   - docker build -t $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG -f build/Dockerfile .
   - docker push
