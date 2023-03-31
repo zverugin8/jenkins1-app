@@ -56,12 +56,12 @@ push_image:
   image: docker:20.10.16
   services:
   - docker:20.10.16-dind
-  before_script:
-  - docker load -i build/$IMAGE_NAME.tar.gz
+  before_script: []
   script:
   - echo "stage push"
-  - docker login -u $DOCKER_USER_NAME -p $CI_BUILD_TOKEN
   - sleep 20
+  - docker load -i build/$IMAGE_NAME.tar.gz
+  - docker login -u $DOCKER_USER_NAME -p $CI_BUILD_TOKEN
   - docker push $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG
   dependencies:
   - build_image
