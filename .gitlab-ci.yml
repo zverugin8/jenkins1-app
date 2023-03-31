@@ -58,7 +58,7 @@ push_image:
   - gcp
   variables:
     DOCKER_HOST: tcp://docker:2375
-    DOCKER_DRIVER: overlay2
+    #DOCKER_DRIVER: overlay2
   stage: push
   image: docker:20.10.16
   services:
@@ -72,4 +72,6 @@ push_image:
   - docker push $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG
   dependencies:
   - build_image
+
+
 
