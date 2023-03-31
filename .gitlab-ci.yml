@@ -1,29 +1,27 @@
 variables:
   PROJECT_NAMESPACE: my-namespace
   CI_PROJECT_NAME: my-project
-<<<<<<< HEAD
   IMAGE_TAG: v1.0.0
   IMAGE_NAME: pyapp
   USER_NAME: siarheisaroka
 image: python:3.8-slim-buster
 before_script:
 - apt-get update -y && apt-get install -y curl make git
-=======
-  IMAGE_TAG: latest
-
->>>>>>> 60039e4eb2439da68f717c94eed43323e3987318
 stages:
 - test
 - build
 - push
 
 lint:
+  tags:
+  - gcp
   stage: test
   script:
-<<<<<<< HEAD
   - make lint
 
 run_tests:
+  tags:
+  - gcp
   stage: test
   script:
   - make test
@@ -31,6 +29,8 @@ run_tests:
   - job: lint
 
 build_image:
+  tags:
+  - gcp
   variables:
     DOCKER_HOST: tcp://docker:2375
     DOCKER_DRIVER: overlay2
@@ -46,7 +46,6 @@ build_image:
   - sleep 20
   - apk add iproute2
   - apk add git
-  #- apk add py3-pip 
   - ss -ntpl
   - docker build --network=host -t $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG -f build/Dockerfile .
   - docker image save $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG -o build/$IMAGE_NAME.tar.gz
@@ -55,6 +54,8 @@ build_image:
     - build/
 
 push_image:
+  tags:
+  - gcp
   variables:
     DOCKER_HOST: tcp://docker:2375
     DOCKER_DRIVER: overlay2
@@ -72,21 +73,3 @@ push_image:
   dependencies:
   - build_image
 
-=======
-  - echo "lint test"
-
-run_tests:  
-  stage: test
-  script:
-  - echo "running tests"
-
-build_image:
-  stage: build
-  script:
-  - echo "stage build"
-
-push_image:
-  stage: push
-  script:
-  - echo "stage deploy"
->>>>>>> 60039e4eb2439da68f717c94eed43323e3987318
