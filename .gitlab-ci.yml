@@ -6,7 +6,7 @@ variables:
   USER_NAME: siarheisaroka
 image: python:3.8-slim-buster
 before_script:
-- sudo apt-get update -y && apt-get install -y curl make git
+- apt-get update -y && apt-get install -y curl make git
 stages:
 - test
 - build
@@ -18,7 +18,7 @@ lint:
   stage: test
   script:
   - whoami
-  - sudo make lint
+  - make lint
 
 run_tests:
   tags:
