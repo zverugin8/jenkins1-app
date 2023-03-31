@@ -43,7 +43,7 @@ build_image:
   #- apk add py3-pip 
   - ss -ntpl
   - docker build -t $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG -f build/Dockerfile .
-  - docker push
+  - docker push $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG
 
 push_image:
   stage: push
