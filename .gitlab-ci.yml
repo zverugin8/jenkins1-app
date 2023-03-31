@@ -19,7 +19,9 @@ lint:
 run_tests:
   stage: test
   script:
-  - echo "running tests"
+  - make test
+  needs:
+  - job: lint
 
 build_image:
   stage: build
