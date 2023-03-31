@@ -1,8 +1,11 @@
 variables:
   PROJECT_NAMESPACE: my-namespace
   CI_PROJECT_NAME: my-project
-  IMAGE_TAG: latest
-
+  IMAGE_TAG: v1.0.0
+  IMAGE_NAME: app
+image: python:3.8-slim-buster
+before_script:
+- apt-get update -y && apt-get install -y curl make
 stages:
 - test
 - build
@@ -11,7 +14,7 @@ stages:
 lint:
   stage: test
   script:
-  - echo "lint test"
+  - make lint
 
 run_tests:
   stage: test
