@@ -38,6 +38,7 @@ build_image:
   - echo "vars DOCKER_HOST:$DOCKER_HOST, DOCKER_DRIVER:$DOCKER_DRIVER:"
   - docker login -u $DOCKER_USER_NAME -p $CI_BUILD_TOKEN
   - sleep 30
+  - apk add iproute2
   - ss -ntpl
   - docker build -t $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG -f build/Dockerfile .
   - docker push
