@@ -61,6 +61,7 @@ push_image:
   script:
   - echo "stage push"
   - docker login -u $DOCKER_USER_NAME -p $CI_BUILD_TOKEN
+  - sleep 20
   - docker push $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG
   dependencies:
   - build_image
