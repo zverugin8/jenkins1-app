@@ -58,9 +58,9 @@ build_image:
 push_image:
   tags:
   - gcp
-  variables:
-    DOCKER_HOST: tcp://docker:2375
-    #DOCKER_DRIVER: overlay2
+  # variables:
+  #   DOCKER_HOST: tcp://docker:2375
+  #   DOCKER_DRIVER: overlay2
   stage: push
   image: docker:20.10.16
   services:
@@ -68,7 +68,7 @@ push_image:
   before_script: []
   script:
   - echo "stage push"
-  - sleep 20
+  # - sleep 20
   - docker load -i build/$IMAGE_NAME.tar.gz
   - docker login -u $DOCKER_USER_NAME -p $BUILD_TOKEN
   - docker push $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG
