@@ -1,9 +1,6 @@
 variables:
-  PROJECT_NAMESPACE: my-namespace
-  CI_PROJECT_NAME: my-project
   IMAGE_TAG: v1.0.0
   IMAGE_NAME: pyapp
-  USER_NAME: siarheisaroka
 image: python:3.8-slim-buster
 before_script:
 - apt-get update -y && apt-get install -y curl make git
@@ -11,7 +8,7 @@ stages:
 - test
 - build
 - push
-
+# Lint job
 lint:
   tags:
   - gcp
@@ -19,7 +16,7 @@ lint:
   script:
   - whoami
   - make lint
-
+# Test job
 run_tests:
   tags:
   - gcp
@@ -28,13 +25,10 @@ run_tests:
   - make test
   needs:
   - job: lint
-
+# Build job
 build_image:
   tags:
   - gcp
-  # variables:
-  # DOCKER_HOST: tcp://docker:2375
-  # DOCKER_DRIVER: overlay2
   stage: build
   image: docker:20.10.16
   services:
@@ -42,25 +36,16 @@ build_image:
   before_script: []
   script:
   - docker -v
-  # - env
-  - echo "vars DOCKER_HOST:$DOCKER_HOST, DOCKER_DRIVER:$DOCKER_DRIVER"
   - echo "$BUILD_TOKEN" | docker login --username "$DOCKER_USER_NAME" --password-stdin
-  - sleep 20
-  - apk add iproute2
-  - apk add git
-  - ss -ntpl
   - docker build --network=host -t $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG -f build/Dockerfile .
   - docker image save $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG -o build/$IMAGE_NAME.tar.gz
   artifacts:
     paths:
     - build/
-
+# Push job
 push_image:
   tags:
   - gcp
-  # variables:
-  #   DOCKER_HOST: tcp://docker:2375
-  #   DOCKER_DRIVER: overlay2
   stage: push
   image: docker:20.10.16
   services:
@@ -68,12 +53,10 @@ push_image:
   before_script: []
   script:
   - echo "stage push"
-  # - sleep 20
   - docker load -i build/$IMAGE_NAME.tar.gz
   - docker login -u $DOCKER_USER_NAME -p $BUILD_TOKEN
   - docker push $DOCKER_USER_NAME/$IMAGE_NAME:$IMAGE_TAG
-  dependencies:
-  - build_image
+
 
 
 
