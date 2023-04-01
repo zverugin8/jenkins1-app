@@ -12,22 +12,22 @@ stages:
 - build
 - push
 
-# lint:
-#   tags:
-#   - gcp
-#   stage: test
-#   script:
-#   - whoami
-#   - make lint
+lint:
+  tags:
+  - gcp
+  stage: test
+  script:
+  - whoami
+  - make lint
 
-# run_tests:
-#   tags:
-#   - gcp
-#   stage: test
-#   script:
-#   - make test
-#   needs:
-#   - job: lint
+run_tests:
+  tags:
+  - gcp
+  stage: test
+  script:
+  - make test
+  needs:
+  - job: lint
 
 build_image:
   tags:
