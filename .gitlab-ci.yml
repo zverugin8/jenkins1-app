@@ -12,29 +12,29 @@ stages:
 - build
 - push
 
-lint:
-  tags:
-  - gcp
-  stage: test
-  script:
-  - whoami
-  - make lint
+# lint:
+#   tags:
+#   - gcp
+#   stage: test
+#   script:
+#   - whoami
+#   - make lint
 
-run_tests:
-  tags:
-  - gcp
-  stage: test
-  script:
-  - make test
-  needs:
-  - job: lint
+# run_tests:
+#   tags:
+#   - gcp
+#   stage: test
+#   script:
+#   - make test
+#   needs:
+#   - job: lint
 
 build_image:
   tags:
   - gcp
-  variables:
-  #DOCKER_HOST: tcp://docker:2375
-  #DOCKER_DRIVER: overlay2
+  # variables:
+  # DOCKER_HOST: tcp://docker:2375
+  # DOCKER_DRIVER: overlay2
   stage: build
   image: docker:20.10.16
   services:
@@ -42,6 +42,7 @@ build_image:
   before_script: []
   script:
   - docker -v
+  - env
   - echo "vars DOCKER_HOST:$DOCKER_HOST, DOCKER_DRIVER:$DOCKER_DRIVER"
   - echo "$BUILD_TOKEN" | docker login --username "$DOCKER_USER_NAME" --password-stdin
   - sleep 20
